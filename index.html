@@ -154,6 +154,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mybatis学习01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/18/Mybatis%E5%AD%A6%E4%B9%A001/">Mybatis学习01</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/18/Mybatis%E5%AD%A6%E4%B9%A001/" class="archive-article-date">
+  	<time datetime="2020-01-18T14:03:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、Mybatis环境的搭建"><a href="#1、Mybatis环境的搭建" class="headerlink" title="1、Mybatis环境的搭建"></a>1、Mybatis环境的搭建</h2><p>Mybatis使用Maven来管理项目，所以首先需要搭建Maven的环境</p>
+<h3 id="1、Maven环境的搭建"><a href="#1、Maven环境的搭建" class="headerlink" title="1、Maven环境的搭建"></a>1、Maven环境的搭建</h3><ul>
+<li><p>这里使用Maven3.6.1，在官网下载3.6.1的Maven后解压到所需的目录。</p>
+</li>
+<li><p>解压后配置环境变量，新建一个名为 “ MAVEN_HOME” 的变量，将maven的根目录放入，再在“path”中加入代码 “%MAVEN_HOME%/bin”。</p>
+</li>
+</ul>
+<h3 id="2、Maven的配置"><a href="#2、Maven的配置" class="headerlink" title="2、Maven的配置"></a>2、Maven的配置</h3><ul>
+<li><p>配置Maven的中央仓库为阿里云的仓库，进入根目录–&gt;conf–&gt;settings.xml，找到 <mirrors></mirrors>，在其中插入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </span><br><span class="line">	   <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">	   <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">	   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>;  </span><br><span class="line">	   <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>          </span><br><span class="line">	<span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Maven本地仓库，这里将本地仓库放到Maven的根目录中，在Maven根目录中新建文件夹repository（自定义），然后找到settings.xml中的<localRepository></localRepository>，在其下方插入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>F:\apache-maven-3.6.1\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里是我的仓库目录</p>
+</li>
+</ul>
+<h3 id="3、IDEA的配置"><a href="#3、IDEA的配置" class="headerlink" title="3、IDEA的配置"></a>3、IDEA的配置</h3><ul>
+<li>随意进入一个项目，左上角，File–&gt;Other Settings–&gt;Settings for New Progect</li>
+</ul>
+<p><img src="Mybatis%E5%AD%A6%E4%B9%A001.assets/1579362940261.png" alt="1579362940261"></p>
+<ul>
+<li>选择Maven，将默认使用的Maven改为自己的Maven，并更改配置文件为自己的Maven配置文件</li>
+</ul>
+<p><img src="Mybatis%E5%AD%A6%E4%B9%A001.assets/1579363078983.png" alt="1579363078983"></p>
+<h3 id="4、Maven添加Mybatis依赖"><a href="#4、Maven添加Mybatis依赖" class="headerlink" title="4、Maven添加Mybatis依赖"></a>4、Maven添加Mybatis依赖</h3><p>新建一个普通的maven项目，在其pom.xml中添加mybatis的依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--    Mybatis依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<p>​    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/18/Mybatis%E5%AD%A6%E4%B9%A001/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux环境下的java的安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
