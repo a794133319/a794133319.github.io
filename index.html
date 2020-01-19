@@ -174,7 +174,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Mybatis学习02"><a href="#Mybatis学习02" class="headerlink" title="Mybatis学习02"></a>Mybatis学习02</h2><h3 id="1、Mybatis核心配置文件"><a href="#1、Mybatis核心配置文件" class="headerlink" title="1、Mybatis核心配置文件"></a>1、Mybatis核心配置文件</h3><ul>
+         <a id="more"></a> 
+
+<h2 id="Mybatis学习02"><a href="#Mybatis学习02" class="headerlink" title="Mybatis学习02"></a>Mybatis学习02</h2><h3 id="1、Mybatis核心配置文件"><a href="#1、Mybatis核心配置文件" class="headerlink" title="1、Mybatis核心配置文件"></a>1、Mybatis核心配置文件</h3><ul>
 <li><p>XML 配置文件中包含了对 MyBatis 系统的核心设置，包含获取数据库连接实例的数据源（DataSource）和决定事务作用域和控制方式的事务管理器（TransactionManager）。 </p>
 </li>
 <li><p>官方推荐XML配置文件命名为：mybatis-config.xml</p>
@@ -303,7 +305,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、Mybatis环境的搭建"><a href="#1、Mybatis环境的搭建" class="headerlink" title="1、Mybatis环境的搭建"></a>1、Mybatis环境的搭建</h2><p>Mybatis使用Maven来管理项目，所以首先需要搭建Maven的环境</p>
+         <a id="more"></a> 
+
+<h2 id="1、Mybatis环境的搭建"><a href="#1、Mybatis环境的搭建" class="headerlink" title="1、Mybatis环境的搭建"></a>1、Mybatis环境的搭建</h2><p>Mybatis使用Maven来管理项目，所以首先需要搭建Maven的环境</p>
 <h3 id="1、Maven环境的搭建"><a href="#1、Maven环境的搭建" class="headerlink" title="1、Maven环境的搭建"></a>1、Maven环境的搭建</h3><ul>
 <li><p>这里使用Maven3.6.1，在官网下载3.6.1的Maven后解压到所需的目录。</p>
 </li>
@@ -405,20 +409,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Centos-7-下的java安装"><a href="#Centos-7-下的java安装" class="headerlink" title="Centos 7 下的java安装"></a>Centos 7 下的java安装</h1><hr>
-<h2 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h2><h3 id="下载jdk的安装包，放到-usr-local-目录下"><a href="#下载jdk的安装包，放到-usr-local-目录下" class="headerlink" title="下载jdk的安装包，放到 /usr/local 目录下"></a>下载jdk的安装包，放到 /usr/local 目录下</h3><h3 id="创建一个-java-的目录存放-jdk"><a href="#创建一个-java-的目录存放-jdk" class="headerlink" title="创建一个 java 的目录存放 jdk"></a>创建一个 java 的目录存放 jdk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir java</span><br></pre></td></tr></table></figure>
-
-<h3 id="解压java安装包"><a href="#解压java安装包" class="headerlink" title="解压java安装包"></a>解压java安装包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf &quot;jdk名称，例如jdk-8u171-linux-x64.tar.gz&quot; -C &#x2F;usr&#x2F;local&#x2F;java&#x2F;</span><br></pre></td></tr></table></figure>
-<p><em>-C /usr/local/java/ 是解压到java文件夹下</em></p>
-<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure>
-<p>打开后按 “i”进入插入模式，在最后插入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;“安装后的目录的名称，如jdk1.8.0_171，可进入java目录下查看”</span><br><span class="line">export JRE_HOME&#x3D;$&#123;JAVA_HOME&#125;&#x2F;jre</span><br><span class="line">export CLASSPATH&#x3D;.:$&#123;JAVA_HOME&#125;&#x2F;lib:$&#123;JRE_HOME&#125;&#x2F;lib</span><br><span class="line">export PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH</span><br></pre></td></tr></table></figure>
-<h3 id="使配置的环境变量生效"><a href="#使配置的环境变量生效" class="headerlink" title="使配置的环境变量生效"></a>使配置的环境变量生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line">&#96;</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加软链接"><a href="#添加软链接" class="headerlink" title="添加软链接"></a>添加软链接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;java&#x2F;”java下的jdk目录名称“&#x2F;bin&#x2F;java &#x2F;usr&#x2F;bin&#x2F;java</span><br></pre></td></tr></table></figure>
-
-<h3 id="检查一下"><a href="#检查一下" class="headerlink" title="检查一下"></a>检查一下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2020/01/14/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84java%E7%9A%84%E5%AE%89%E8%A3%85/#more">more >></a>
+        
       
 
       
@@ -543,19 +536,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        
+          <a class="article-more-a" href="/2020/01/14/hello-world/#more">more >></a>
+        
       
 
       
