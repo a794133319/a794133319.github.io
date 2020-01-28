@@ -154,6 +154,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-安卓学习01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/">安卓学习01</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/" class="archive-article-date">
+  	<time datetime="2020-01-28T03:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、SavedStateHandle（进程被杀保存数据）"><a href="#1、SavedStateHandle（进程被杀保存数据）" class="headerlink" title="1、SavedStateHandle（进程被杀保存数据）"></a>1、SavedStateHandle（进程被杀保存数据）</h1><h2 id="1、依赖"><a href="#1、依赖" class="headerlink" title="1、依赖"></a>1、依赖</h2><p>在build.gradle的dependencies中添加依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01'</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、MyViewModel的写法"><a href="#2、MyViewModel的写法" class="headerlink" title="2、MyViewModel的写法"></a>2、MyViewModel的写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewModel</span> <span class="keyword">extends</span> <span class="title">ViewModel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SavedStateHandle handle;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyViewModel</span><span class="params">(SavedStateHandle handle)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.handle = handle;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> MutableLiveData&lt;Integer&gt; <span class="title">getNumber</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!handle.contains(MainActivity.KEY))&#123;</span><br><span class="line">            handle.set(MainActivity.KEY,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> handle.getLiveData(MainActivity.KEY);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        getNumber().setValue(getNumber().getValue()+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>此时不使用livedata来保存数据，使用SavedStateHandle。</li>
+<li>构造函数需要初始化，在主函数中初始化viewModel时会传进来相应的数据。</li>
+<li>这个就相当于一个Map，一个关键字对应一个数据。</li>
+<li>getNumber（）返回的是一个livedata类型的数据。</li>
+</ul>
+<h2 id="3、主函数的写法"><a href="#3、主函数的写法" class="headerlink" title="3、主函数的写法"></a>3、主函数的写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    ActivityMainBinding binding;</span><br><span class="line">    MyViewModel myViewModel;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String KEY = <span class="string">"my_number"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        binding = DataBindingUtil.setContentView(<span class="keyword">this</span>,R.layout.activity_main);</span><br><span class="line">        myViewModel = ViewModelProviders.of(<span class="keyword">this</span>,<span class="keyword">new</span> SavedStateVMFactory(<span class="keyword">this</span>)).get(MyViewModel<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        binding.setData(myViewModel);</span><br><span class="line">        binding.setLifecycleOwner(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>此时viewmodel创建时需要传递一个参数给构造函数。</li>
+</ul>
+<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><p>该方法用于进程被杀死的情况恢复数据，如果用户退出程序，那么数据还是不存在的。</p>
+<h1 id="2、SharedPreferences（数据的存储）"><a href="#2、SharedPreferences（数据的存储）" class="headerlink" title="2、SharedPreferences（数据的存储）"></a>2、SharedPreferences（数据的存储）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);</span><br><span class="line">SharedPreferences.Editor editor = sharedPreferences.edit();</span><br><span class="line">editor.putInt(<span class="string">"NUMBER"</span>,<span class="number">100</span>);</span><br><span class="line">editor.apply();</span><br></pre></td></tr></table></figure>
+
+<p>一般写法，创建一个与本activity名称相同的存储文件，存储关键字为NUMBER的数据，值为100。</p>
+<p>editor.apply();是异步提交。</p>
+<p>如果MyViewModel继承的是AndroidViewModel的话，则关机、退出等都可以保存数据。</p>
+<p>myviewmodel代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewModel</span> <span class="keyword">extends</span> <span class="title">AndroidViewModel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SavedStateHandle handle;</span><br><span class="line">    <span class="keyword">final</span> String Number = <span class="string">"NUMBER"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyViewModel</span><span class="params">(@NonNull Application application, SavedStateHandle handle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(application);</span><br><span class="line">        <span class="keyword">this</span>.handle = handle;</span><br><span class="line">        <span class="keyword">if</span> (!handle.contains(Number))&#123;</span><br><span class="line">            load();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MutableLiveData&lt;Integer&gt; <span class="title">getNumber</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> handle.getLiveData(Number);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">load</span><span class="params">()</span></span>&#123;</span><br><span class="line">        SharedPreferences shp = getApplication().getSharedPreferences(<span class="string">"MyData"</span>, Context.MODE_PRIVATE);</span><br><span class="line">        <span class="keyword">int</span> x = shp.getInt(Number,<span class="number">0</span>);</span><br><span class="line">        handle.set(Number,x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>&#123;</span><br><span class="line">        SharedPreferences shp = getApplication().getSharedPreferences(<span class="string">"MyData"</span>, Context.MODE_PRIVATE);</span><br><span class="line">        SharedPreferences.Editor editor = shp.edit();</span><br><span class="line">        editor.putInt(Number,getNumber().getValue());</span><br><span class="line">        editor.apply();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dowhat</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        handle.set(Number,getNumber().getValue()+x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主进程代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    MyViewModel myViewModel;</span><br><span class="line">    ActivityMainBinding binding;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        binding = DataBindingUtil.setContentView(<span class="keyword">this</span>,R.layout.activity_main);</span><br><span class="line">        myViewModel = ViewModelProviders.of(<span class="keyword">this</span>,<span class="keyword">new</span> SavedStateVMFactory(<span class="keyword">this</span>)).get(MyViewModel<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        binding.setData(myViewModel);</span><br><span class="line">        binding.setLifecycleOwner(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        myViewModel.save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mybatis学习04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
