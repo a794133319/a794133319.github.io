@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>安卓学习01 | 不将就的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、SavedStateHandle（进程被杀保存数据）1、依赖在build.gradle的dependencies中添加依赖： 1implementation &#39;androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01&#39;  2、MyViewModel的写法123456789101112131415public class My">
+  <meta name="description" content="今日内容是SavedStateHandle以及SharedPreferences。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安卓学习01">
 <meta property="og:url" content="http://yoursite.com/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/index.html">
 <meta property="og:site_name" content="不将就的个人博客">
-<meta property="og:description" content="1、SavedStateHandle（进程被杀保存数据）1、依赖在build.gradle的dependencies中添加依赖： 1implementation &#39;androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01&#39;  2、MyViewModel的写法123456789101112131415public class My">
+<meta property="og:description" content="今日内容是SavedStateHandle以及SharedPreferences。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-28T03:33:37.000Z">
-<meta property="article:modified_time" content="2020-01-28T14:34:39.860Z">
+<meta property="article:modified_time" content="2020-02-04T11:55:41.287Z">
 <meta property="article:author" content="不将就">
 <meta name="twitter:card" content="summary">
   
@@ -174,7 +174,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1、SavedStateHandle（进程被杀保存数据）"><a href="#1、SavedStateHandle（进程被杀保存数据）" class="headerlink" title="1、SavedStateHandle（进程被杀保存数据）"></a>1、SavedStateHandle（进程被杀保存数据）</h1><h2 id="1、依赖"><a href="#1、依赖" class="headerlink" title="1、依赖"></a>1、依赖</h2><p>在build.gradle的dependencies中添加依赖：</p>
+        <p>今日内容是SavedStateHandle以及SharedPreferences。</p>
+<a id="more"></a>
+
+<h1 id="1、SavedStateHandle（进程被杀保存数据）"><a href="#1、SavedStateHandle（进程被杀保存数据）" class="headerlink" title="1、SavedStateHandle（进程被杀保存数据）"></a>1、SavedStateHandle（进程被杀保存数据）</h1><h2 id="1、依赖"><a href="#1、依赖" class="headerlink" title="1、依赖"></a>1、依赖</h2><p>在build.gradle的dependencies中添加依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01'</span><br></pre></td></tr></table></figure>
 
 <h2 id="2、MyViewModel的写法"><a href="#2、MyViewModel的写法" class="headerlink" title="2、MyViewModel的写法"></a>2、MyViewModel的写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewModel</span> <span class="keyword">extends</span> <span class="title">ViewModel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SavedStateHandle handle;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyViewModel</span><span class="params">(SavedStateHandle handle)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.handle = handle;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> MutableLiveData&lt;Integer&gt; <span class="title">getNumber</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!handle.contains(MainActivity.KEY))&#123;</span><br><span class="line">            handle.set(MainActivity.KEY,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> handle.getLiveData(MainActivity.KEY);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        getNumber().setValue(getNumber().getValue()+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
