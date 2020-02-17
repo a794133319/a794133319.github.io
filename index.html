@@ -154,19 +154,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-安卓基础02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android基础02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/">安卓基础02</a>
+      <a class="article-title" href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/">Android基础02</a>
     </h1>
   
 
         
-        <a href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/" class="archive-article-date">
+        <a href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/" class="archive-article-date">
   	<time datetime="2020-02-17T09:18:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-17</time>
 </a>
         
@@ -176,7 +176,7 @@
       
         <p>初识安卓的另一个重要的组件—广播。</p>
         
-          <a class="article-more-a" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/#more">more >></a>
+          <a class="article-more-a" href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/#more">more >></a>
         
       
 
@@ -189,7 +189,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/">展开全文 >></a>
         </p>
       
 
@@ -239,34 +239,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1、Intent"><a href="#1、Intent" class="headerlink" title="1、Intent"></a>1、Intent</h1><p><strong>Intent</strong>可以让活动进行跳转。使用方式有两种，一种是显式，另一种是隐式。</p>
-<h2 id="1、显示调用"><a href="#1、显示调用" class="headerlink" title="1、显示调用"></a>1、显示调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>; startActivity(intent);</span><br></pre></td></tr></table></figure>
-
-<p>我们首先构建出了一个Intent，传入FirstActivity.this 作为上下文，传入SecondActivity.class 作为目标活动，这样我们的“意图”就非常明显了，即在FirstActivity这个活动的基础上打开SecondActivity这个活动。然后通过startActivity() 方法来执行这个Intent。</p>
-<h2 id="2、隐式调用"><a href="#2、隐式调用" class="headerlink" title="2、隐式调用"></a>2、隐式调用</h2><p>相比于显式Intent，隐式Intent则含蓄了许多，它并不明确指出我们想要启动哪一个活动，而是指定了一系列更为抽象的action 和category 等信息，然后交由系统去分析这个Intent，并帮我们找出合适的活动去启动。</p>
-<p>通过在<activity> 标签下配置<intent-filter> 的内容，可以指定当前活动能够响应的action 和category </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=<span class="string">".SecondActivity"</span> &gt; &lt;intent-filter&gt; &lt;action android:name=<span class="string">"com.example.activitytest.ACTION_START"</span> /&gt; &lt;category android:name=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span><br><span class="line">&lt;/intent-filter&gt; &lt;/activity&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在<action> 标签中我们指明了当前活动可以响应 </p>
-<p>com.example.activitytest.ACTION_START 这个action ，而<category> 标签则包含 </p>
-<p>了一些附加信息，更精确地指明了当前的活动能够响应的Intent中还可能带有的category 。只 </p>
-<p>有<action> 和<category> 中的内容同时能够匹配上Intent中指定的action 和category </p>
-<p>时，这个活动才能响应该Intent。</p>
-<h2 id="3、intent返回给上一个活动数据"><a href="#3、intent返回给上一个活动数据" class="headerlink" title="3、intent返回给上一个活动数据"></a>3、intent返回给上一个活动数据</h2><p>启动活动时：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button1.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123; <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123; Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>; startActivityForResult(intent, <span class="number">1</span>); &#125; &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里我们使用了startActivityForResult() 方法来启动SecondActivity，请求码只要是一 </p>
-<p>个唯一值就可以了，这里传入了1。</p>
-<p>接下来是第二个活动的返回数据：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123; <span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState); </span><br><span class="line">    setContentView(R.layout.second_layout); </span><br><span class="line">    Button button2 = (Button) findViewById(R.id.button_2); </span><br><span class="line">    button2.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123; </span><br><span class="line">        <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123; </span><br><span class="line">            Intent intent = <span class="keyword">new</span> Intent(); </span><br><span class="line">            intent.putExtra(<span class="string">"data_return"</span>, <span class="string">"Hello FirstActivity"</span>); </span><br><span class="line">            setResult(RESULT_OK, intent); </span><br><span class="line">            finish(); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;); </span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于我们是使用startActivityForResult() 方法来启动SecondActivity的，在 </p>
-<p>SecondActivity被销毁之后会回调上一个活动的onActivityResult() 方法，因此我们需要在 </p>
-<p>FirstActivity中重写这个方法来得到返回的数据，如下所示:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123; <span class="keyword">switch</span> (requestCode) &#123; </span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: </span><br><span class="line">        <span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</span><br><span class="line">            String returnedData = data.getStringExtra(<span class="string">"data_return"</span>); 					      		 Log.d(<span class="string">"FirstActivity"</span>, returnedData);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果用户是按返回键退出的该活动，那么只需要将第二个活动中的intent代码写到第二个活动的onBackPressed（）方法中即可。</p>
-
+        <p>主要学习了Intent，进行activity直接的跳转及数据传递。</p>
+        
+          <a class="article-more-a" href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/#more">more >></a>
+        
       
 
       
