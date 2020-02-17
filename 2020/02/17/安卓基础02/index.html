@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/2 | 不将就的个人博客</title>
+  <title>安卓基础02 | 不将就的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是不将就的私人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="不将就的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/02/index.html">
+  <meta name="description" content="初识安卓的另一个重要的组件—广播。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓基础02">
+<meta property="og:url" content="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/index.html">
 <meta property="og:site_name" content="不将就的个人博客">
-<meta property="og:description" content="我是不将就的私人博客">
+<meta property="og:description" content="初识安卓的另一个重要的组件—广播。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581931320109.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581931360727.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581932246379.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581932371636.png">
+<meta property="article:published_time" content="2020-02-17T09:18:41.000Z">
+<meta property="article:modified_time" content="2020-02-17T09:42:06.167Z">
 <meta property="article:author" content="不将就">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581931320109.png">
   
     <link rel="alternative" href="/atom.xml" title="不将就的个人博客" type="application/atom+xml">
   
@@ -152,295 +159,228 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-安卓基础02" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      安卓基础02
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/" class="archive-article-date">
+
+        
+        <a href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/" class="archive-article-date">
   	<time datetime="2020-02-17T09:18:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-17</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/">安卓基础02</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初识安卓的另一个重要的组件—广播。</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<h1 id="1、广播的分类"><a href="#1、广播的分类" class="headerlink" title="1、广播的分类"></a>1、广播的分类</h1><ul>
+<li>标准广播：是一种完全异步执行的广播，在广播发出之后，所有的广播 接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可言。这种广播的效率会比较高，但同时也意味着它是无法被截断的。</li>
+</ul>
+<p><img src="%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581931320109.png" alt="1581931320109"></p>
+<ul>
+<li>有序广播：是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。所以此时的广播接收器是有先后顺序的，优先级高的广播接收器就可以先收到广播消息，并且前面的广播接收器还可以截断正在传递的广播，这样后面的广播接 收器就无法收到广播消息了。</li>
+</ul>
+<p><img src="%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581931360727.png" alt="1581931360727"></p>
+<h1 id="2、广播的注册方式"><a href="#2、广播的注册方式" class="headerlink" title="2、广播的注册方式"></a>2、广播的注册方式</h1><h2 id="1、动态注册"><a href="#1、动态注册" class="headerlink" title="1、动态注册"></a>1、动态注册</h2><p>动态注册是在app运行时注册。在需要注册的地方写以下代码（监听网络状态为例）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 下面是广播的代码</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        intentFilter = new IntentFilter();</span></span><br><span class="line"><span class="comment">//        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");</span></span><br><span class="line"><span class="comment">//        myInternetReceiver = new MyInternetReceiver();</span></span><br><span class="line"><span class="comment">//        registerReceiver(myInternetReceiver,intentFilter);</span></span><br></pre></td></tr></table></figure>
 
+<p>并定义一个内部类，继承Androidx的BroadcastReceiver。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    //自定义的广播</span></span><br><span class="line"><span class="comment">//    class MyInternetReceiver extends BroadcastReceiver&#123;</span></span><br><span class="line"><span class="comment">//        @Override</span></span><br><span class="line"><span class="comment">//        public void onReceive(Context context, Intent intent) &#123;</span></span><br><span class="line"><span class="comment">//            Toast.makeText(context,"internet change",Toast.LENGTH_SHORT).show();</span></span><br><span class="line"><span class="comment">//            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);</span></span><br><span class="line"><span class="comment">//            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();</span></span><br><span class="line"><span class="comment">//            if (activeNetworkInfo != null &amp;&amp; activeNetworkInfo.isAvailable())&#123;</span></span><br><span class="line"><span class="comment">//                Toast.makeText(context,"现在有网",Toast.LENGTH_SHORT).show();</span></span><br><span class="line"><span class="comment">//            &#125;else &#123;</span></span><br><span class="line"><span class="comment">//                Toast.makeText(context,"没网了",Toast.LENGTH_SHORT).show();</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就可以动态注册。</p>
+<h2 id="2、静态注册"><a href="#2、静态注册" class="headerlink" title="2、静态注册"></a>2、静态注册</h2><p>为了方便可以直接new一个自定义的类：new–other—Broadcast Receiver</p>
+<p>新建后AS便帮助我们在AndroidManifest.xml中注册了该广播接收器。</p>
+<p><img src="%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581932246379.png" alt=""></p>
+<p>因为此处是用开机自启动作示范，所以在该广播接收器内加入要接受的广播类型即开机</p>
+<p>所以还需要添加一个权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>至此静态注册已经完成，重启模拟器后便可以接收到广播。</p>
+<p>因为是按照《第一行代码》所学习的，那时Android版本还比较低，在后来谷歌更改了静态注册的规则，像这种开启自启动的（流氓）广播已经被禁止了。但是有一些豁免名单里的内容可以静态注册。</p>
+<h1 id="3、自定义广播"><a href="#3、自定义广播" class="headerlink" title="3、自定义广播"></a>3、自定义广播</h1><h2 id="1、标准广播"><a href="#1、标准广播" class="headerlink" title="1、标准广播"></a>1、标准广播</h2><p>做法与静态广播相同，不过不同的是监听的广播是自己自定义的。要新建一个继承BroadcastReceiver的类</p>
+<p><img src="%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002.assets/1581932371636.png" alt="1581932371636"></p>
+<p>然后在需要发送广播的地方插入逻辑代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.example.firstdemo.MY_BROADCAST"</span>);</span><br><span class="line">                Log.i(<span class="string">"mytag"</span>, <span class="string">"onClick: "</span>+getPackageName());</span><br><span class="line">                intent.setComponent(<span class="keyword">new</span> ComponentName(getPackageName(),<span class="string">"com.example.firstdemo.MyBroadcastReceiver"</span>));</span><br><span class="line">                sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
+
+<p>注意：intent.setComponent（）方法在书中并未使用，也是因为目前谷歌的规则更改后需要添加的内容，明确指定处理这个intent的组件。既然是使用intent来进行发送广播，那么当然可以在发送广播的时候传递一些数据，以待以后深入。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/" class="archive-article-date">
-  	<time datetime="2020-02-15T09:17:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android基础01</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/">Android基础01</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="安卓基础02" data-title="安卓基础02" data-url="http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/", 
+    sourceId: "安卓基础02",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/14/%E8%AE%B0%E8%B4%A6%E6%9C%ACAPP%E5%B0%8F%E5%8D%87%E7%BA%A7/" class="archive-article-date">
-  	<time datetime="2020-02-14T11:12:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/14/%E8%AE%B0%E8%B4%A6%E6%9C%ACAPP%E5%B0%8F%E5%8D%87%E7%BA%A7/">记账本APP小升级</a>
-    </h1>
+  <div id="SOHUCS" sid="安卓基础02" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/12/%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2020-02-12T11:48:07.946Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/12/%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/">注解和反射</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/11/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9102/" class="archive-article-date">
-  	<time datetime="2020-02-11T12:55:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/11/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9102/">安卓大作业开发02</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/09/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A007/" class="archive-article-date">
-  	<time datetime="2020-02-09T13:01:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/09/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A007/">安卓学习07</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/08/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9101/" class="archive-article-date">
-  	<time datetime="2020-02-08T10:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/08/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9101/">安卓大作业开发01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/06/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A006/" class="archive-article-date">
-  	<time datetime="2020-02-06T13:55:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/06/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A006/">安卓学习06</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/05/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A005-%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BD%95%E5%B0%8F%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2020-02-05T11:49:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/05/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A005-%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BD%95%E5%B0%8F%E7%BB%93/">安卓学习05---单词记录小结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/04/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A004/" class="archive-article-date">
-  	<time datetime="2020-02-04T11:54:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/04/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A004/">&#39;安卓学习04&#39;</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/02/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/02/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -464,8 +404,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

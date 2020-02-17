@@ -154,6 +154,486 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-安卓基础02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/">安卓基础02</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/" class="archive-article-date">
+  	<time datetime="2020-02-17T09:18:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初识安卓的另一个重要的组件—广播。</p>
+        
+          <a class="article-more-a" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/17/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%8002/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android基础01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/">Android基础01</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/" class="archive-article-date">
+  	<time datetime="2020-02-15T09:17:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、Intent"><a href="#1、Intent" class="headerlink" title="1、Intent"></a>1、Intent</h1><p><strong>Intent</strong>可以让活动进行跳转。使用方式有两种，一种是显式，另一种是隐式。</p>
+<h2 id="1、显示调用"><a href="#1、显示调用" class="headerlink" title="1、显示调用"></a>1、显示调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>; startActivity(intent);</span><br></pre></td></tr></table></figure>
+
+<p>我们首先构建出了一个Intent，传入FirstActivity.this 作为上下文，传入SecondActivity.class 作为目标活动，这样我们的“意图”就非常明显了，即在FirstActivity这个活动的基础上打开SecondActivity这个活动。然后通过startActivity() 方法来执行这个Intent。</p>
+<h2 id="2、隐式调用"><a href="#2、隐式调用" class="headerlink" title="2、隐式调用"></a>2、隐式调用</h2><p>相比于显式Intent，隐式Intent则含蓄了许多，它并不明确指出我们想要启动哪一个活动，而是指定了一系列更为抽象的action 和category 等信息，然后交由系统去分析这个Intent，并帮我们找出合适的活动去启动。</p>
+<p>通过在<activity> 标签下配置<intent-filter> 的内容，可以指定当前活动能够响应的action 和category </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=<span class="string">".SecondActivity"</span> &gt; &lt;intent-filter&gt; &lt;action android:name=<span class="string">"com.example.activitytest.ACTION_START"</span> /&gt; &lt;category android:name=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span><br><span class="line">&lt;/intent-filter&gt; &lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在<action> 标签中我们指明了当前活动可以响应 </p>
+<p>com.example.activitytest.ACTION_START 这个action ，而<category> 标签则包含 </p>
+<p>了一些附加信息，更精确地指明了当前的活动能够响应的Intent中还可能带有的category 。只 </p>
+<p>有<action> 和<category> 中的内容同时能够匹配上Intent中指定的action 和category </p>
+<p>时，这个活动才能响应该Intent。</p>
+<h2 id="3、intent返回给上一个活动数据"><a href="#3、intent返回给上一个活动数据" class="headerlink" title="3、intent返回给上一个活动数据"></a>3、intent返回给上一个活动数据</h2><p>启动活动时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button1.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123; <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123; Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>; startActivityForResult(intent, <span class="number">1</span>); &#125; &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们使用了startActivityForResult() 方法来启动SecondActivity，请求码只要是一 </p>
+<p>个唯一值就可以了，这里传入了1。</p>
+<p>接下来是第二个活动的返回数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123; <span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState); </span><br><span class="line">    setContentView(R.layout.second_layout); </span><br><span class="line">    Button button2 = (Button) findViewById(R.id.button_2); </span><br><span class="line">    button2.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123; </span><br><span class="line">        <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123; </span><br><span class="line">            Intent intent = <span class="keyword">new</span> Intent(); </span><br><span class="line">            intent.putExtra(<span class="string">"data_return"</span>, <span class="string">"Hello FirstActivity"</span>); </span><br><span class="line">            setResult(RESULT_OK, intent); </span><br><span class="line">            finish(); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;); </span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于我们是使用startActivityForResult() 方法来启动SecondActivity的，在 </p>
+<p>SecondActivity被销毁之后会回调上一个活动的onActivityResult() 方法，因此我们需要在 </p>
+<p>FirstActivity中重写这个方法来得到返回的数据，如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123; <span class="keyword">switch</span> (requestCode) &#123; </span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: </span><br><span class="line">        <span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</span><br><span class="line">            String returnedData = data.getStringExtra(<span class="string">"data_return"</span>); 					      		 Log.d(<span class="string">"FirstActivity"</span>, returnedData);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果用户是按返回键退出的该活动，那么只需要将第二个活动中的intent代码写到第二个活动的onBackPressed（）方法中即可。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/15/Android%E5%9F%BA%E7%A1%8001/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-记账本APP小升级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/14/%E8%AE%B0%E8%B4%A6%E6%9C%ACAPP%E5%B0%8F%E5%8D%87%E7%BA%A7/">记账本APP小升级</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/14/%E8%AE%B0%E8%B4%A6%E6%9C%ACAPP%E5%B0%8F%E5%8D%87%E7%BA%A7/" class="archive-article-date">
+  	<time datetime="2020-02-14T11:12:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>增加了显示当月总收入和总支出的功能，增加了选择收支类型的功能，删去了删除账目后恢复的功能。</p>
+        
+          <a class="article-more-a" href="/2020/02/14/%E8%AE%B0%E8%B4%A6%E6%9C%ACAPP%E5%B0%8F%E5%8D%87%E7%BA%A7/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/14/%E8%AE%B0%E8%B4%A6%E6%9C%ACAPP%E5%B0%8F%E5%8D%87%E7%BA%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-注解和反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/12/%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/">注解和反射</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/12/%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/" class="archive-article-date">
+  	<time datetime="2020-02-12T11:48:07.946Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、注解"><a href="#1、注解" class="headerlink" title="1、注解"></a>1、注解</h1><h2 id="1、内置注解"><a href="#1、内置注解" class="headerlink" title="1、内置注解"></a>1、内置注解</h2><ul>
+<li><p>@Override</p>
+<p>表示重写了父类的方法，有此注解的方法必须是重写了其父类的方法。</p>
+</li>
+<li><p>@Deprecated</p>
+<p>表示该方法不推荐被使用或者有更好的方法代替，在其他地方使用该方法时会被划掉。</p>
+</li>
+<li><p>@SuppressWarnings(“all”)</p>
+<p>表示不检测警告。</p>
+</li>
+</ul>
+<h2 id="2、元注解"><a href="#2、元注解" class="headerlink" title="2、元注解"></a>2、元注解</h2><p>可以给内置注解进行注解的注解。</p>
+<ul>
+<li><p>@Target()</p>
+<p>表示注解可以使用的位置，有</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></span><br><span class="line">    TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Field declaration (includes enum constants) */</span></span><br><span class="line">    FIELD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Method declaration */</span></span><br><span class="line">    METHOD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Formal parameter declaration */</span></span><br><span class="line">    PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Constructor declaration */</span></span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Local variable declaration */</span></span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Annotation type declaration */</span></span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Package declaration */</span></span><br><span class="line">    PACKAGE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Type parameter declaration</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Use of a type</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_USE</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@Retention()</p>
+<p>表示什么时候执行注解。有source、class、runtime，一般自定义注解都写runtime。</p>
+<p>级别：runtime&gt;class&gt;source。</p>
+</li>
+<li><p>@Documented</p>
+<p>表示注解会被javadoc写入。</p>
+</li>
+<li><p>@Inherited</p>
+<p>表示子类可以继承父类的注解。</p>
+</li>
+</ul>
+<h2 id="3、自定义注解"><a href="#3、自定义注解" class="headerlink" title="3、自定义注解"></a>3、自定义注解</h2><p>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> 注解名称&#123;</span><br><span class="line">    <span class="comment">//参数格式：参数类型 + 参数名称 + ()</span></span><br><span class="line">    <span class="comment">//如：String name();</span></span><br><span class="line">    <span class="comment">//如果只有一个参数。那么最好命名位value，这样可以不用再在注解上写具体的名称。</span></span><br><span class="line">    <span class="comment">//如果有默认值，则可以写：String name() default "";</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2、反射"><a href="#2、反射" class="headerlink" title="2、反射"></a>2、反射</h1><h2 id="1、获取Class对象"><a href="#1、获取Class对象" class="headerlink" title="1、获取Class对象"></a>1、获取Class对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1、通过全包名</span></span><br><span class="line">        Class stuent = Class.forName(<span class="string">"Student"</span>);</span><br><span class="line">        System.out.println(stuent.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2、通过对象</span></span><br><span class="line">        Class student2 = person.getClass();</span><br><span class="line">        System.out.println(student2.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3、通过类名.class</span></span><br><span class="line">        Class student3 = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">        System.out.println(student3.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4、基本内置类型的包装类都有TYPE属性</span></span><br><span class="line">        Class type = Integer.TYPE;</span><br><span class="line">        System.out.println(type);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> id, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", id="</span> + id +</span><br><span class="line">                <span class="string">", age="</span> + age +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">"学生"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Teacher</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">"老师"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、ORM（对象关系映射）"><a href="#2、ORM（对象关系映射）" class="headerlink" title="2、ORM（对象关系映射）"></a>2、ORM（对象关系映射）</h2><p>通过反射获取对象的注解及其值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchFieldException </span>&#123;</span><br><span class="line">        Class c1 = Class.forName(<span class="string">"Child"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取类的注解</span></span><br><span class="line">        Annotation[] annotations = c1.getAnnotations();</span><br><span class="line">        <span class="keyword">for</span> (Annotation annotation : annotations) &#123;</span><br><span class="line">            System.out.println(annotation);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得类注解的值</span></span><br><span class="line">        ClassAnno classAnno= (ClassAnno) c1.getAnnotation(ClassAnno<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(classAnno.dbName());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得属性注解的值</span></span><br><span class="line">        Field id = c1.getDeclaredField(<span class="string">"id"</span>);</span><br><span class="line">        FieldAnno annotation = id.getAnnotation(FieldAnno<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(annotation.colName());</span><br><span class="line">        System.out.println(annotation.colType());</span><br><span class="line">        System.out.println(annotation.length());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ClassAnno</span>(dbName = <span class="string">"db_child"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span></span>&#123;</span><br><span class="line">    <span class="meta">@FieldAnno</span>(colName = <span class="string">"child_id"</span>,colType = <span class="string">"int"</span>,length = <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="meta">@FieldAnno</span>(colName = <span class="string">"child_age"</span>,colType = <span class="string">"int"</span>,length = <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="meta">@FieldAnno</span>(colName = <span class="string">"child_name"</span>,colType = <span class="string">"varchar"</span>,length = <span class="number">5</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> age, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Child&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", age="</span> + age +</span><br><span class="line">                <span class="string">", name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> ClassAnno&#123;</span><br><span class="line">    <span class="function">String <span class="title">dbName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(ElementType.FIELD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> FieldAnno&#123;</span><br><span class="line">    <span class="function">String <span class="title">colName</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">colType</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以通过注解内的值来动态生成sql语句来建表等等，多用于框架。</p>
+<h2 id="3、常用方法"><a href="#3、常用方法" class="headerlink" title="3、常用方法"></a>3、常用方法</h2><ul>
+<li>Class对象.getAnnotations()—获取类对象的所有注解</li>
+<li>Class对象.getDeclaredFields()—获取类的所有属性，无论是private还是public等等</li>
+<li>Class对象.getDeclaredMethods()—获取类的所有方法</li>
+<li>获取类的方法后可以执行类的方法，类的方法对象.invoke(对象，参数)，可以执行该方法，如果方法是私有的，则需要关闭权限检查，可以使用：类的方法对象.setAccessible(true)来关闭权限检查。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/12/%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-安卓大作业开发02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/11/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9102/">安卓大作业开发02</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/11/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9102/" class="archive-article-date">
+  	<time datetime="2020-02-11T12:55:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单学习了一下Jsoup，但是发现爬不到所需的数据，偶然中发现了论坛大佬发布的API，于是使用API来获取数据。由于目前还不会制作表格，所以只对河北省的信息进行了可视化管理。</p>
+        
+          <a class="article-more-a" href="/2020/02/11/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9102/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/11/%E5%AE%89%E5%8D%93%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%BC%80%E5%8F%9102/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-安卓学习07" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/09/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A007/">安卓学习07</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/09/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A007/" class="archive-article-date">
+  	<time datetime="2020-02-09T13:01:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日学习了Glide和SwipeRefreshLayout。</p>
+<h1 id="1、Glide"><a href="#1、Glide" class="headerlink" title="1、Glide"></a>1、Glide</h1><ul>
+<li><p>官方简介：Glide是一个快速高效的Android图片加载库，注重于平滑的滚动。Glide提供了易用的API，高性能、可扩展的图片解码管道（<code>decode pipeline</code>），以及自动的资源池技术。 </p>
+</li>
+<li><p>Glide的使用也是比较简单，最基础的使用代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Glide.with(fragment)</span><br><span class="line">    .load(url)</span><br><span class="line">    .into(imageView);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>依赖：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'com.github.bumptech.glide:glide:4.11.0'</span></span><br><span class="line">annotationProcessor <span class="string">'com.github.bumptech.glide:compiler:4.11.0'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>实际操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Glide.with(<span class="keyword">this</span>)</span><br><span class="line">                .load(url)</span><br><span class="line">                .placeholder(R.drawable.ic_launcher_background)</span><br><span class="line">                .listener(<span class="keyword">new</span> RequestListener&lt;Drawable&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onLoadFailed</span><span class="params">(@Nullable GlideException e, Object model, Target&lt;Drawable&gt; target, <span class="keyword">boolean</span> isFirstResource)</span> </span>&#123;</span><br><span class="line">                        <span class="keyword">if</span> (swipeRefreshLayout.isRefreshing())&#123;</span><br><span class="line">                            swipeRefreshLayout.setRefreshing(<span class="keyword">false</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onResourceReady</span><span class="params">(Drawable resource, Object model, Target&lt;Drawable&gt; target, DataSource dataSource, <span class="keyword">boolean</span> isFirstResource)</span> </span>&#123;</span><br><span class="line">                        <span class="keyword">if</span> (swipeRefreshLayout.isRefreshing())&#123;</span><br><span class="line">                            swipeRefreshLayout.setRefreshing(<span class="keyword">false</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .into(imageView);</span><br></pre></td></tr></table></figure>
+
+<h1 id="2、SwipeRefreshLayout"><a href="#2、SwipeRefreshLayout" class="headerlink" title="2、SwipeRefreshLayout"></a>2、SwipeRefreshLayout</h1><ul>
+<li><p>依赖：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">"androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>需要在布局中将顶层容器换为swiperefreshlayout，并为其设置id以供使用。</p>
+</li>
+<li><p>实际使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);</span><br><span class="line">swipeRefreshLayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefreshLayout.OnRefreshListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                imageLoad();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>imageLoad()为glide封装的图片加载函数。</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/09/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A007/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-安卓大作业开发01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -416,399 +896,9 @@
 
 
   
-    <article id="post-安卓学习03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/03/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A003/">安卓学习03</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/03/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A003/" class="archive-article-date">
-  	<time datetime="2020-02-03T12:28:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今日学习了mediaplayer的简单封装使用以及引导页。</p>
-        
-          <a class="article-more-a" href="/2020/02/03/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A003/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/03/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A003/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-安卓学习02-room" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/02/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A002-room/">安卓学习02---room</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/02/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A002-room/" class="archive-article-date">
-  	<time datetime="2020-02-02T10:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>room是jetpack的组件，可以使程序流畅的访问sqlite。</p>
-        
-          <a class="article-more-a" href="/2020/02/02/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A002-room/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A002-room/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-家庭记账本实现笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/31/%E5%AE%B6%E5%BA%AD%E8%AE%B0%E8%B4%A6%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/">家庭记账本实现笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/31/%E5%AE%B6%E5%BA%AD%E8%AE%B0%E8%B4%A6%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-01-31T03:57:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>预览网址： <a href="http://117.50.96.227/cashbook2/" target="_blank" rel="noopener">http://117.50.96.227/cashbook2/</a> </p>
-        
-          <a class="article-more-a" href="/2020/01/31/%E5%AE%B6%E5%BA%AD%E8%AE%B0%E8%B4%A6%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/31/%E5%AE%B6%E5%BA%AD%E8%AE%B0%E8%B4%A6%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-安卓学习01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/">安卓学习01</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/" class="archive-article-date">
-  	<time datetime="2020-01-28T03:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今日内容是SavedStateHandle以及SharedPreferences。</p>
-        
-          <a class="article-more-a" href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/28/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A001/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mybatis学习04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/20/Mybatis%E5%AD%A6%E4%B9%A004/">Mybatis学习04</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/20/Mybatis%E5%AD%A6%E4%B9%A004/" class="archive-article-date">
-  	<time datetime="2020-01-20T13:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这次的笔记主要是mybatis中的注解</p>
-        
-          <a class="article-more-a" href="/2020/01/20/Mybatis%E5%AD%A6%E4%B9%A004/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/20/Mybatis%E5%AD%A6%E4%B9%A004/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mybatis学习03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/19/Mybatis%E5%AD%A6%E4%B9%A003/">Mybatis学习03</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/19/Mybatis%E5%AD%A6%E4%B9%A003/" class="archive-article-date">
-  	<time datetime="2020-01-19T05:03:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Mybatis学习的第二天，内容有日志和分页。</p>
-        
-          <a class="article-more-a" href="/2020/01/19/Mybatis%E5%AD%A6%E4%B9%A003/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/19/Mybatis%E5%AD%A6%E4%B9%A003/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
