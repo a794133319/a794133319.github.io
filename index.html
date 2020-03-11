@@ -154,6 +154,68 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringMVC02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/SpringMVC02/">SpringMVC02</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/11/SpringMVC02/" class="archive-article-date">
+  	<time datetime="2020-03-11T13:48:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/11/SpringMVC02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringMVC01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -174,7 +236,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>SpringMVC执行流程：</p>
+<p><img src="SpringMVC01.assets/image-20200311150958523.png" alt="image-20200311150958523"></p>
+<p>1、当接收到前端的请求后，首先会被DispatcherServlet拦截，然后DispatcherServlet跳转到HandlerMapping。</p>
+<p>2、HandlerMapping为处理器映射。HandlerMapping根据请求的url在mapping中寻找到相应的handler。</p>
+<p>3、HandlerExecution表示具体的Handler,是根据url查找控制器。</p>
+<p>4、HandlerExecution将handler信息传给DispatcherServlet，DispatcherServlet去传递给HandlerAdapter。</p>
+<p>4、HandlerAdapter让具体的Controller执行。</p>
+<p>5、Controller将执行的信息封装到ModelAndView中返回给HandlerAdapter。</p>
+<p>6、HandlerAdapter将模型传递给DispatcherServlet。</p>
+<p>7、DispatcherServlet将模型交给viewResolver进行解析。</p>
+<p>8、viewResolver将解析后的数据传递给DispatcherServlet。</p>
+<p>9、DispatcherServlet再根据信息将对应的数据传递给对应的视图。</p>
+
       
 
       
@@ -751,71 +825,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/23/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android基础02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/">Android基础02</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/" class="archive-article-date">
-  	<time datetime="2020-02-17T09:18:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>初识安卓的另一个重要的组件—广播。</p>
-        
-          <a class="article-more-a" href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/17/Android%E5%9F%BA%E7%A1%8002/">展开全文 >></a>
         </p>
       
 
